@@ -5,23 +5,23 @@
 using namespace std;
 
 //***************************************************
-//*						                            *
+//*				                    *
 //*                   INPUT DATA                    *
-//*						                            *
+//*				                    *
 //***************************************************
 
 //WARNING:
 //you can get Stackoverflow error or lack of dynamic memory when you run program with Cities about 40-60.
 //it is need to make some optimizations to fix it.
 
-//#define RAND_WEIGHT				//comment this string if you want to set your own weights between cities
+//#define RAND_WEIGHT			//comment this string if you want to set your own weights between cities
 const int Cities = 8;			//set the count of cities
 
 #ifdef RAND_WEIGHT
 	int W[Cities][Cities];		//prepair matrix for random weights
 #endif // RAND_WEIGHT
 
-const int E = 888;				//endless (infinity)
+const int E = 888;			//endless (infinity)
 
 // here you can set your own weights between cities, but at first comment string: #define RAND_WEIGHT
 #ifndef RAND_WEIGHT				
@@ -102,28 +102,28 @@ const int E = 888;				//endless (infinity)
 #endif // !RAND_WEIGHT
 
 //***************************************************
-//*						                            *
+//*					            *
 //*               END OF INPUT DATA                 *
-//*						                            *
+//*					            *
 //***************************************************
 
 int Path[Cities][2];		//path with arcs, Path[i][0] - from , Path[i][1] - to
 int PathCounter = 0;
 int ResPath[Cities + 1];	//path like chain
-int Step = 1;				//number of algorithm iterations
+int Step = 1;			//number of algorithm iterations
 
 struct Node
 {
 	int W[Cities][Cities];		//weight matrix
 	int NeedRow[Cities];		//1 - needed row, 0 - needless row
 	int NeedCol[Cities];		//1 - needed col, 0 - needless col
-	int Arc[2];					//Arc[0] - out node, Arc[1] - in node
-	int ArcExist;				//1 - Arc exists, 0 - Arc not exists
-	int LowBound;				//low bound of this set
-	Node* Son1;					//pointer on son1
-	Node* Son2;					//pointer on son2
-	Node* Parent;				//pointer on parent
-	int Leaf;					//1- leaf, 0 - not leaf, not considered for searching MinLowBound
+	int Arc[2];			//Arc[0] - out node, Arc[1] - in node
+	int ArcExist;			//1 - Arc exists, 0 - Arc not exists
+	int LowBound;			//low bound of this set
+	Node* Son1;			//pointer on son1
+	Node* Son2;			//pointer on son2
+	Node* Parent;			//pointer on parent
+	int Leaf;			//1- leaf, 0 - not leaf, not considered for searching MinLowBound
 };
 
 Node* pTreeRoot = nullptr;

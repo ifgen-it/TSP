@@ -7,23 +7,23 @@
 using namespace std;
 
 //***************************************************
-//*						                            *
+//*			                            *
 //*                   INPUT DATA                    *
-//*						                            *
+//*			                            *
 //***************************************************
 
 //WARNING:
 //you can wait a lot of time to get result for Cities = 11.
 //it is need to make some optimizations to increase results for few cities more
 
-//#define RAND_WEIGHT				//comment this string if you want to set your own weights between cities
+//#define RAND_WEIGHT			//comment this string if you want to set your own weights between cities
 const int Cities = 8;			//set the count of cities
 
 #ifdef RAND_WEIGHT
 	int W[Cities][Cities];		//prepair matrix for random weights
 #endif // RAND_WEIGHT
 
-const int E = 888;				//endless (infinity)
+const int E = 888;			//endless (infinity)
 
 // here you can set your own weights between cities, but at first comment string: #define RAND_WEIGHT
 #ifndef RAND_WEIGHT				
@@ -104,9 +104,9 @@ const int E = 888;				//endless (infinity)
 #endif // !RAND_WEIGHT
 
 //***************************************************
-//*						                            *
+//*			                            *
 //*               END OF INPUT DATA                 *
-//*						                            *
+//*				                    *
 //***************************************************
 
 
@@ -133,18 +133,20 @@ struct SonNode;
 struct Node
 {
 	int City;
-	int Weight;					// arc weight from parent to this node
-	int SumWeight;				// sum weight from root node to this node
-	SonNode* Sons;				// pointer to First son (List of sons)
+	int Weight;			// arc weight from parent to this node
+	int SumWeight;			// sum weight from root node to this node
+	SonNode* Sons;			// pointer to First son (List of sons)
 	
 	int RouteOwn[Cities];		// service route, which modifies during tree construction
-								// 0 on RouteOwn[i] position means that it is need to make son with 'i' City.
+					// 0 on RouteOwn[i] position means that it is need to make son with 'i' City.
 
 	int RouteForChild[Cities];	// service route, which intend for inheritance for all sons
-								// sons must know what cities have been constructed before (in the route to the root)
-								// and what cities sons must constuct by itself
-								// 1 - city was constructed (city is in route from root to node), 0 - city was not constructed yet.
-	int Level;					// level of Tree's Node, root level is 1
+					// sons must know what cities have been constructed before (in the route to the root)
+					// and what cities sons must constuct by itself
+					// 1 - city was constructed (city is in route from root to node),
+					// 0 - city was not constructed yet.
+	
+	int Level;			// level of Tree's Node, root level is 1
 
 };
 
